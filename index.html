@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+		<title>Multi-Level Annotation of Natural Scenes Using Dominant Image Components and Semantic Concepts</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section id="cover" data-background-image="assets/background.jpg">
+					<div id="header"><span>Multi-Level Annotation of Natural Scenes Using Dominant Image Components and Semantic Concepts</span></div>
+					<div style="margin-top:10px; margin-bottom:60px" class="break"></div>
+					<span id="header" style="padding:5px; margin-top:50%; font-size:25px;" class="left">Florentin Eckl Sommersemester 2016</span>
+					<img id="logo" src="assets/logo.png"/>
+				</section>
+				<section>
+					<h3>Gliederung</h3>
+					<div class="break"></div>
+					<ol>
+						<li>Einblick</li>
+						<li>Objekte</li>
+						<li>Semantik</li>
+						<li>Evaluierung</li>
+						<li>Fazit</li>
+					</ol>
+				</section>
+				<section>
+					<h3>1. Einblick</h3>
+					<div class="break"></div>
+					<em>Multi-Level <span class="fragment fade-out" data-fragment-index="1">Annotation of Natural Scenes Using</span><br /> <span class="fragment fade-out" data-fragment-index="1">Dominant Image</span> Components <span class="fragment fade-out" data-fragment-index="1">and Semantic </span>Concepts</em>
+				</section>
+				<section>
+			    <div>
+						<img src="assets/1.jpg" id="imgBorder" class="left" style="width: 45%"></img>
+						<ul class="left list fragment fade-in">
+							<li><p>Himmel</p></li>
+							<li><p>Schnee</p></li>
+							<li><p>Bergblick</p></li>
+							<li><p>Skifahren</p></li>
+						</ul>
+						<div style="margin-top: 10px" class="break left"></div>
+						<img src="assets/2.jpg" id="imgBorder" class="left" style="width: 45%"></img>
+						<ul class="left list fragment fade-in">
+							<li><p>Himmel</p></li>
+							<li><p>Wasser</p></li>
+							<li><p>Strand</p></li>
+							<li><p>Segeln</p></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<p><b>Wie können wir Tags klassifizieren?</b></p>
+					<div class="break"></div>
+					<p class="fragment fade-in">Komponenten ...</p>
+					<p class="fragment fade-in">und deren Ausdruck</p>
+				</section>
+				<section>
+					<h3>Warum?</h3>
+					<div class="break"></div>
+					<p class="fragment fade-in">Performance</p>
+					<ul>
+						<li class="fragment fade-in">Effizienz</li>
+						<li class="fragment fade-in">Genauigkeit</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Ziel</h3>
+					<div class="break"></div>
+					<em>Genaueres Taggen durch Objekterkennung und daraus abzuleitender Semantik</em>
+				</section>
+				<section>
+						<h3>2. Erkennung Objekte</h3>
+						<div class="break"></div>
+						<p class="fragment fade-in">Automatische Bildsegmentierung (Meanshift)</p>
+						<p class="fragment fade-in">Klassenzuweisung mit Support Vector Machines (SVMs)</p>
+						<div class="fragment fade-in">
+							<div class="break"></div>
+							<p>Testergebnisse</p>
+						</div>
+				</section>
+				<section>
+					<h3>Automatische Bildsegmentierung (Meanshift)</h3>
+					<div class="break"></div>
+					<div>
+						<ol class="left" style="width:45%">
+							<li class="fragment fade-in">Feature Space <br />(z.B Farben oder Texturen)</li>
+							<li class="fragment fade-in">Meanshift mit mehreren verteilten Windows</li>
+						</ol>
+						<img class="right noBoxes" style="width: 50%" src="assets/meanshift.png"/>
+					</div>
+					<img id="imgBorder" style="margin-left: 10%; margin-top: 2%" class="left fragment fade-in" src="assets/meanshift.gif"/>
+				</section>
+				<section>
+					<h3>Demo</h3>
+				</section>
+				<section>
+					<h3>Daten</h3>
+					<div class="break"></div>
+					<img class="noBoxes" style="width: 80%" src="assets/papagei.png"/>
+				</section>
+				<section>
+					<h3>Support Vector Machines (SVMs)</h3>
+					<div class="break"></div>
+				</section>
+				<section>
+					<h3>Vorgehen</h3>
+					<div class="break"></div>
+					<p class="fragment fade-in">1. Test-Set für jede gewünschte Klasse</p>
+					<p class="fragment fade-in">2. Bildern werden Klassen per Menschenhand zugeteilt</p>
+					<p class="fragment fade-in">3. Anwenden der "one-against-all rule"</p>
+				</section>
+				<section>
+					<h3>one-against-all rule</h3>
+					<div class="break"></div>
+						<img class="noBoxes" src="assets/onevsallstart.png" />
+						<p>C1: Gras / C2: Stein / C3: Wasser</p>
+						<p>Paare: (X<sub>l</sub>; C(X<sub>l</sub>)) Feature X und die zugehörige Klasse</p>
+						<p>T = {(X<sub>l</sub>, C(X<sub>l</sub>)) | l = 1, ..., n; C(X<sub>l</sub>) &isin; {C<sub>1</sub>, ..., C<sub>n</sub>}}</p>
+				</section>
+				<section>
+					<h3>one-against-all rule</h3>
+					<div class="break"></div>
+						<img class="noBoxes" src="assets/onevsall.png" />
+						<p style="margin-top: 0 !important; margin-bottom: 0">C<sub>1</sub> = sgn((w, X<sub>l</sub>) + b)</p>
+						<p style="margin-top: 0 !important; margin-bottom: 0">C<sub>2</sub> = sgn((w, X<sub>l</sub>) + b)</p>
+						<p style="margin-top: 0 !important; margin-bottom: 0">C<sub>3</sub> = sgn((w, X<sub>l</sub>) + b)</p>
+						<p class="fragment fade-in"><b>Algorithmus lernt Merkmale des zu erkennenden Objektes!</b></p>
+				</section>
+				<section>
+					<h3>Testergebnisse</h3>
+					<div class="break"></div>
+					<img class="noBoxes" src="assets/svmresults.png"/>
+					<p style="margin:0; font-size: 16px">Precision ρ versus recall ϱ</p>
+				</section>
+				<section>
+						<h3>3. Ableitung von Semantik</h3>
+						<div class="break"></div>
+						<p class="fragment fade-in">Das "finite mixture model" (FFM)</p>
+						<p class="fragment fade-in">Anwenden von "expectation-maximization" (EM)</p>
+				</section>
+				<section>
+					<h3>Das "finite mixture model" (FFM)</h3>
+					<div class="break"></div>
+					<ol>
+						<li class="fragment fade-in">Semantische Klassenverteilung für visuelle Komponente X</li>
+						<li class="fragment fade-in">Einbezug von:</li>
+							<ul class="fragment fade-in">
+								<li>Parametern: ω<sub>c<sub>j</sub></sub> = {ω<sub>s<sub>i</sub></sub>, i = 1, · · · , κ}</li>
+								<li>Mischkomponenten: Θ<sub>c<sub>j</sub></sub> = {θ<sub>s<sub>i</sub></sub>, i = 1,··· , κ}</li>
+								<li>κ: Optimale Anzahl der Mischkomponenten</li>
+							</ul>
+						<li class="fragment fade-in">Wahrscheinlichkeit für einen semantischen Ausdruck C<sub>j</sub>
+							<img style="border: 3px solid red !important; padding: 8px; margin-left: 10px" class="noBoxes" src="assets/sumffm.png"/>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>Expectation-maximization Algorithmus</h3>
+					<div class="break"></div>
+					<p>1. Übernehmen der Initialkonfiguration <br />(Mittelwert, Abweichung, Größe) des Clusters</p>
+					<img class="noBoxes" style="width: 55%; margin: -2%" src="assets/mixture model.png" />
+					<p>2. Kann X mit P Bestandteil von S<sub>i</sub> sein? (E-Step)</p>
+					<p>3. Anpassen der mixture components ω<sub>c<sub>j</sub></sub> (M-Step)</p>
+				</section>
+				<section>
+					<h3>Expectation-maximization Algorithmus</h3>
+					<div style="margin-bottom: -5%" class="break"></div>
+					<img class="noBoxes" style="margin: 0;" src="assets/Multigauss.gif" />
+				</section>
+				<section>
+						<h3>4. Evaluierung des Ergebnisses</h3>
+						<div class="break"></div>
+						<ul>
+							<li>35000 Bilder von Google</li>
+							<li>125000 Bilder von der Corel Imagedatenbank</li>
+							<li>Testset für 15 semantische Klassen (z.B Garten, Strand)</li>
+								<ul>
+									<li>Jede Klasse kommt in 120 Bildern vor -> 1800 Bilder</li>
+								</ul>
+								<li>Testen der semantischen Klassifizierung mit Daten von Objekterkennung und Image Blobs / π: true positives</li>
+						</ul>
+						<p><span style="float: left; border: 3px solid red; padding: 4px;">α = π / (π + τ)</span>classification precision / τ: true negatives</p>
+						<p><span style="float: left; border: 3px solid red; padding: 4px;">β = π / (π + μ)</span>classification recall / μ: false positives</p>
+				</section>
+				<section>
+					<h3>Testergebnisse</h3>
+					<div class="break"></div>
+					<img class="noBoxes" src="assets/semanticresults.png"/>
+					<p style="margin:0; font-size: 16px">Average precision <span style="text-decoration: overline">ρ</span> = ρ × α versus average recall <span style="text-decoration: overline">ϱ</span> = ϱ × β</p>
+				</section>
+				<section>
+						<h3>5. Fazit</h3>
+						<div class="break"></div>
+						<video style="margin-top: 5%" width="1080" controls>
+						<source  src="assets/keynote.mp4" type="video/mp4">
+						</video>
+				</section>
+			</div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				history: true,
+				controls: false,
+				progress: false,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
